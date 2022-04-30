@@ -1,17 +1,30 @@
 package com.booktown.backend.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "customer")
 public class Customer {
 	
+	/**
+	 * @Id is used to denote the attribute as primary key
+	 * @GenericGenerator is used to create an isolated sequence for this entity to avoid
+	 * issues regarding hibernate sequence as hibernate creates an single sequence by default
+	 * for all entities
+	 */
 	@Id
 	@GeneratedValue(generator = "Customer_SequenceStyleGenerator")
 	@GenericGenerator(name = "Customer_SequenceStyleGenerator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
@@ -21,6 +34,7 @@ public class Customer {
 			@Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") }
 			)
+	@Column(name = "customer_id")
 	private Integer customerId;
 	
 	private String name;
@@ -29,8 +43,21 @@ public class Customer {
 	
 	private String country;
 	
+	@ColumnDefault(value = "0")
 	private Integer membershipStatus;
+	
+	/**
+	 * @JsonIgnore is used to avoid infinite loop during api testing
+	 * @OneToOne is used to denote one to one mapping and cascadetype is set to all to delete usercreds too
+	 * when customer info is deleted
+	 */
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserCredentials userCredentials;
 
+	
+	//getter and setter methods
+	
 	public String getName() {
 		return name;
 	}
@@ -66,6 +93,8 @@ public class Customer {
 	public Integer getCustomerId() {
 		return customerId;
 	}
+	
+	//toString method
 
 	@Override
 	public String toString() {
