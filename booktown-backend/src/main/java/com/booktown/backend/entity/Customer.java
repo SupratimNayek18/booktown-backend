@@ -43,7 +43,8 @@ public class Customer {
 	
 	private String country;
 	
-	@ColumnDefault(value = "0")
+	private String email;
+	
 	private Integer membershipStatus;
 	
 	/**
@@ -58,6 +59,14 @@ public class Customer {
 	
 	//getter and setter methods
 	
+	public UserCredentials getUserCredentials() {
+		return userCredentials;
+	}
+
+	public void setUserCredentials(UserCredentials userCredentials) {
+		this.userCredentials = userCredentials;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -80,6 +89,14 @@ public class Customer {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Integer getMembershipStatus() {
