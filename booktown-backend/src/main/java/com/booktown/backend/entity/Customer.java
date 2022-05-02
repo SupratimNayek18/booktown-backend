@@ -34,7 +34,6 @@ public class Customer {
 			@Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") }
 			)
-	@Column(name = "customer_id")
 	private Integer customerId;
 	
 	private String name;
@@ -46,6 +45,10 @@ public class Customer {
 	private String email;
 	
 	private Integer membershipStatus;
+	
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	private Cart cart;
 	
 	/**
 	 * @JsonIgnore is used to avoid infinite loop during api testing
@@ -112,6 +115,14 @@ public class Customer {
 	}
 	
 	//toString method
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	@Override
 	public String toString() {

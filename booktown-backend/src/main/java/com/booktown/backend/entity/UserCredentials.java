@@ -47,7 +47,7 @@ public class UserCredentials {
 	 */
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "customer_fk",referencedColumnName = "customer_id")
+	@JoinColumn(name = "customer_fk",referencedColumnName = "customerId")
 	private Customer customer;
 
 	
