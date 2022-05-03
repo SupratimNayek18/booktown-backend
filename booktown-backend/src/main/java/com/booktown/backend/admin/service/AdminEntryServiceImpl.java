@@ -13,7 +13,7 @@ import com.booktown.backend.utils.DtoToEntity;
 import com.booktown.backend.utils.ValidationUtils;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminEntryServiceImpl implements AdminEntryService {
 	
 	@Autowired
 	AdminRepository adminRepository;

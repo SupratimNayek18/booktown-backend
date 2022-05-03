@@ -5,7 +5,7 @@ import com.booktown.backend.admin.exception.AdminNotFoundException;
 import com.booktown.backend.admin.exception.AdminRegistrationException;
 import com.booktown.backend.entity.Admin;
 
-public interface AdminService {
+public interface AdminEntryService {
 	
 	public Admin login(AdminDTO adminDTO) throws AdminNotFoundException;
 	

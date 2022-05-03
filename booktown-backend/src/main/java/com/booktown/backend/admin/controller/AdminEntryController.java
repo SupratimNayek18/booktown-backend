@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.booktown.backend.admin.dto.AdminDTO;
 import com.booktown.backend.admin.exception.AdminNotFoundException;
 import com.booktown.backend.admin.exception.AdminRegistrationException;
-import com.booktown.backend.admin.service.AdminService;
+import com.booktown.backend.admin.service.AdminEntryService;
 import com.booktown.backend.entity.Admin;
 
 @RestController
@@ -19,7 +19,7 @@ import com.booktown.backend.entity.Admin;
 public class AdminEntryController {
 	
 	@Autowired
-	AdminService adminService;
+	AdminEntryService adminService;
 
 	@PostMapping("/login")
 	public ResponseEntity<Admin> login(@RequestBody AdminDTO adminDTO) throws AdminNotFoundException {
