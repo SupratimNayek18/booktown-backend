@@ -21,11 +21,13 @@ public class AdminEntryController {
 	@Autowired
 	AdminEntryService adminService;
 
+	//Post mapping for admin login
 	@PostMapping("/login")
 	public ResponseEntity<Admin> login(@RequestBody AdminDTO adminDTO) throws AdminNotFoundException {
 		return new ResponseEntity<>(adminService.login(adminDTO), HttpStatus.OK);
 	}
 
+	//Post mapping for admin register
 	@PostMapping("/register")
 	public ResponseEntity<Admin> register(@RequestBody AdminDTO adminDTO) throws AdminRegistrationException {
 		return new ResponseEntity<>(adminService.register(adminDTO), HttpStatus.OK);

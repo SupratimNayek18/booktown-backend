@@ -27,12 +27,6 @@ public class EntryServiceImpl implements EntryService {
 	@Autowired
 	CustomPasswordEncoder customPasswordEncoder;
 
-	@Autowired
-	UserCredentialsDTO userCredentialsDTO;
-
-	@Autowired
-	RegistrationDetailsDTO registrationDetailsDTO;
-
 	
 	// Method for customer login
 	@Override

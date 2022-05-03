@@ -46,15 +46,16 @@ public class Customer {
 	
 	private Integer membershipStatus;
 	
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	private Cart cart;
-	
 	/**
 	 * @JsonIgnore is used to avoid infinite loop during api testing
 	 * @OneToOne is used to denote one to one mapping and cascadetype is set to all to delete usercreds too
 	 * when customer info is deleted
 	 */
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	private Cart cart;
+	
+	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private UserCredentials userCredentials;

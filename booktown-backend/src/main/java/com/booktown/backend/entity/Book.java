@@ -17,6 +17,12 @@ import org.hibernate.annotations.Parameter;
 @Table(name = "books")
 public class Book {
 	
+	/**
+	 * @Id is used to denote the attribute as primary key
+	 * @GenericGenerator is used to create an isolated sequence for this entity to avoid
+	 * issues regarding hibernate sequence as hibernate creates an single sequence by default
+	 * for all entities
+	 */
 	@Id
 	@GeneratedValue(generator = "Book_SequenceStyleGenerator")
 	@GenericGenerator(name = "Book_SequenceStyleGenerator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",

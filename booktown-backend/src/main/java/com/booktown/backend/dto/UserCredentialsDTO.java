@@ -1,8 +1,5 @@
 package com.booktown.backend.dto;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class UserCredentialsDTO {
 
 	private String username;

@@ -21,33 +21,61 @@ public class AdminEntryServiceImpl implements AdminEntryService {
 	@Autowired
 	CustomPasswordEncoder customPasswordEncoder;
 
+	
+	//Method for admin login
 	@Override
 	public Admin login(AdminDTO adminDTO) throws AdminNotFoundException {
+		//Getting the admin entity by username
 		Admin admin = adminRepository.findByUsername(adminDTO.getUsername());
+		
 		if(admin!=null) {
+			
+			//Retrieving the stored hashed password from database
 			String storedPassword = admin.getPassword();
+			
+			
+			/**Matching stored passoword with given adminDTO password 
+			 * and returning admin object if matched else throwing exception
+			 */
 			if(customPasswordEncoder.matches(adminDTO.getPassword(), storedPassword)) {
 				return admin;
 			}else {
 				throw new AdminNotFoundException("Incorrect Password");
 			}
+			
 		}else {
 			throw new AdminNotFoundException("Admin not found with given credentials");
 		}
 	}
 
+	
+	//Method for admin registration
 	@Override
 	public Admin register(AdminDTO adminDTO) throws AdminRegistrationException {
 		
+		//Validating the username
 		if(!ValidationUtils.usernamePatternMatches(adminDTO.getUsername())) {
 			throw new AdminRegistrationException("Invalid username");
 		}
 		
-		Admin admin = DtoToEntity.convertAdminDtoToEntity(adminDTO);
 		
+		//Checking if admin exists with the given username
+		Admin admin = adminRepository.findByUsername(adminDTO.getUsername());
+		if(admin!=null) throw new AdminRegistrationException("Username already Exists");
+		
+		
+		//Converting DTO to entity object
+		admin = DtoToEntity.convertAdminDtoToEntity(adminDTO);
+		
+		
+		//Hashing the password
 		String hashedPassword = customPasswordEncoder.encode(adminDTO.getPassword());
 		admin.setPassword(hashedPassword);
+		
+		
+		//Saving admin info
 		return adminRepository.save(admin);
+		
 	}
 
 }

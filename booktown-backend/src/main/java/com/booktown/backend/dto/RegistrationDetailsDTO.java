@@ -1,8 +1,5 @@
 package com.booktown.backend.dto;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class RegistrationDetailsDTO {
 
 	private String name;

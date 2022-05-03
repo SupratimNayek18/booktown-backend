@@ -10,6 +10,12 @@ import org.hibernate.annotations.Parameter;
 @Entity
 public class Admin {
 	
+	/**
+	 * @Id is used to denote the attribute as primary key
+	 * @GenericGenerator is used to create an isolated sequence for this entity to avoid
+	 * issues regarding hibernate sequence as hibernate creates an single sequence by default
+	 * for all entities
+	 */
 	@Id
 	@GeneratedValue(generator = "Admin_SequenceStyleGenerator")
 	@GenericGenerator(name = "Admin_SequenceStyleGenerator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",

@@ -8,6 +8,7 @@ import com.booktown.backend.entity.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	
+	//Query to fetch admin using username
 	@Query("select admin from Admin admin where admin.username=:username")
 	public Admin findByUsername(@Param("username") String username);
 
