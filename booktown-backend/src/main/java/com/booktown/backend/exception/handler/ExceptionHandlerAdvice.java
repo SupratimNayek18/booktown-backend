@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.booktown.backend.admin.exception.AdminNotFoundException;
+import com.booktown.backend.admin.exception.AdminRegistrationException;
 import com.booktown.backend.exception.CustomerNotFoundException;
 import com.booktown.backend.exception.CustomerRegistrationException;
 
@@ -21,6 +23,18 @@ public class ExceptionHandlerAdvice {
 	public ResponseEntity<String> customerRegistrationException(CustomerRegistrationException cre)
 	{
 		return  new ResponseEntity<>(cre.getMessage(),HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(AdminNotFoundException.class)
+	public ResponseEntity<String> adminNotFoundException(AdminNotFoundException anfe)
+	{
+		return  new ResponseEntity<>(anfe.getMessage(),HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(AdminRegistrationException.class)
+	public ResponseEntity<String> adminRegistrationException(AdminRegistrationException are)
+	{
+		return  new ResponseEntity<>(are.getMessage(),HttpStatus.BAD_REQUEST);
 	}
 	
 }
