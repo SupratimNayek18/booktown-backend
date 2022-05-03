@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.booktown.backend.entity.Customer;
 import com.booktown.backend.entity.UserCredentials;
 
 public interface UserCredentialsRepository extends JpaRepository<UserCredentials, Integer>{
