@@ -1,4 +1,4 @@
-package com.booktown.backend.admin.exception;
+package com.booktown.backend.exception;
 
 public class BookNotFoundException extends Exception {
 

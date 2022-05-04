@@ -13,41 +13,47 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "books")
 public class Book {
-	
+
 	/**
 	 * @Id is used to denote the attribute as primary key
-	 * @GenericGenerator is used to create an isolated sequence for this entity to avoid
-	 * issues regarding hibernate sequence as hibernate creates an single sequence by default
-	 * for all entities
+	 * @GenericGenerator is used to create an isolated sequence for this entity to
+	 *                   avoid issues regarding hibernate sequence as hibernate
+	 *                   creates an single sequence by default for all entities
 	 */
 	@Id
 	@GeneratedValue(generator = "Book_SequenceStyleGenerator")
-	@GenericGenerator(name = "Book_SequenceStyleGenerator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-	parameters = {
-			@Parameter(name = "sequence_name", value = "book_SEQ"),
-			@Parameter(name = "optimizer", value = "hilo"),
-			@Parameter(name = "initial_value", value = "1"),
-			@Parameter(name = "increment_size", value = "1") }
-			)
+	@GenericGenerator(name = "Book_SequenceStyleGenerator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
+			@Parameter(name = "sequence_name", value = "book_SEQ"), @Parameter(name = "optimizer", value = "hilo"),
+			@Parameter(name = "initial_value", value = "1"), @Parameter(name = "increment_size", value = "1") })
 	private Integer bookId;
-	
+
 	private String title;
-	
+
 	private String description;
+
+	/**
+	 * @ElementCollection signifies that the instance is of type list and also must
+	 *                    be used when @CollectionTable is used which in turn
+	 *                    specifies the table to store the collection
+	 */
 	
 	@ElementCollection
-    @CollectionTable(name="listOfIsbn")
+	@CollectionTable(name = "listOfIsbn")
 	private List<String> isbnList = new ArrayList<>();
-	
+
 	private Integer stock;
-	
+
 	private String author;
 	
+	private Double price;
+
 	private String audiobookUrl;
-	
+
 	private String videoUrl;
 
 	public String getTitle() {
@@ -66,6 +72,7 @@ public class Book {
 		this.description = description;
 	}
 
+	@JsonIgnore
 	public List<String> getISBNList() {
 		return isbnList;
 	}
@@ -110,12 +117,23 @@ public class Book {
 		return bookId;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public List<String> getIsbnList() {
+		return isbnList;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [bookId=" + bookId + ", title=" + title + ", description=" + description + ", ISBNList=" + isbnList
-				+ ", stock=" + stock + ", author=" + author + ", audiobookUrl=" + audiobookUrl + ", videoUrl="
+		return "Book [bookId=" + bookId + ", title=" + title + ", description=" + description + ", stock=" + stock
+				+ ", author=" + author + ", price=" + price + ", audiobookUrl=" + audiobookUrl + ", videoUrl="
 				+ videoUrl + "]";
 	}
-	
-	
+
 }

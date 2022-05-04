@@ -1,12 +1,17 @@
 package com.booktown.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.booktown.backend.admin.repository.BookRepository;
 import com.booktown.backend.dto.RegistrationDetailsDTO;
 import com.booktown.backend.dto.UserCredentialsDTO;
+import com.booktown.backend.entity.Book;
 import com.booktown.backend.entity.Customer;
 import com.booktown.backend.entity.UserCredentials;
+import com.booktown.backend.exception.BookNotFoundException;
 import com.booktown.backend.exception.CustomerNotFoundException;
 import com.booktown.backend.exception.CustomerRegistrationException;
 import com.booktown.backend.repository.CustomerRepository;
@@ -26,6 +31,9 @@ public class EntryServiceImpl implements EntryService {
 
 	@Autowired
 	CustomPasswordEncoder customPasswordEncoder;
+	
+	@Autowired
+	BookRepository bookRepository;
 
 	
 	// Method for customer login
@@ -105,6 +113,15 @@ public class EntryServiceImpl implements EntryService {
 		
 		// return the saved customer
 		return savedCustomer;
+	}
+
+
+	//Method to fetch all books regardless of login
+	@Override
+	public List<Book> getBooks() throws BookNotFoundException {
+		List<Book> bookList = bookRepository.findAll();
+		if(bookList.isEmpty()) throw new BookNotFoundException("No Books To Show");
+		else return bookList;
 	}
 
 }

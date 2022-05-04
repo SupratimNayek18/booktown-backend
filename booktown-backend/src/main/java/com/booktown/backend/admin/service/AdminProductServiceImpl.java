@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.booktown.backend.admin.exception.BookNotAddedException;
-import com.booktown.backend.admin.exception.BookNotFoundException;
 import com.booktown.backend.admin.repository.BookRepository;
 import com.booktown.backend.dto.BookDTO;
 import com.booktown.backend.entity.Book;
+import com.booktown.backend.exception.BookNotFoundException;
 import com.booktown.backend.utils.DtoToEntity;
 
 @Service

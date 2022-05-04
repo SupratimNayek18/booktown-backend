@@ -1,20 +1,15 @@
 package com.booktown.backend.entity;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cart")
@@ -45,30 +40,22 @@ public class Cart {
 	 * @OneToMany is used to denote one to many mapping but cascade type is set to all except delete
 	 * because we dont want to delete books when we delete from cart
 	 */
-	@OneToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-	@JsonIgnore
-	private List<Book> books;
+//	@OneToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+//	@JsonIgnore
+//	private List<Book> books = new ArrayList<>();
 	
-	@OneToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-	@JoinColumn(name = "customerId")
-	private Customer customer;
+	private Integer bookId;
+	
+	private Integer customerId;
 	
 	private Integer quantity;
-	
-	public List<Book> getBook() {
-		return books;
+
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void addBook(Book book) {
-		this.books.add(book);
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 	public Integer getQuantity() {
@@ -83,10 +70,18 @@ public class Cart {
 		return cartId;
 	}
 
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
+
 	@Override
 	public String toString() {
-		return "Cart [cartId=" + cartId + ", books=" + books + ", customer=" + customer + ", quantity=" + quantity + "]";
+		return "Cart [cartId=" + cartId + ", bookId=" + bookId + ", customerId=" + customerId + ", quantity=" + quantity
+				+ "]";
 	}
-	
 	
 }

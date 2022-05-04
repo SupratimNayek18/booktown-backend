@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.booktown.backend.admin.exception.AdminNotFoundException;
 import com.booktown.backend.admin.exception.AdminRegistrationException;
 import com.booktown.backend.admin.exception.BookNotAddedException;
-import com.booktown.backend.admin.exception.BookNotFoundException;
+import com.booktown.backend.exception.BookNotFoundException;
 import com.booktown.backend.exception.CustomerNotFoundException;
 import com.booktown.backend.exception.CustomerRegistrationException;
 
