@@ -41,7 +41,7 @@ public class Book {
 	 *                    be used when @CollectionTable is used which in turn
 	 *                    specifies the table to store the collection
 	 */
-	
+
 	@ElementCollection
 	@CollectionTable(name = "listOfIsbn")
 	private List<String> isbnList = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Book {
 	private Integer stock;
 
 	private String author;
-	
+
 	private Double price;
 
 	private String audiobookUrl;
@@ -123,10 +123,6 @@ public class Book {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public List<String> getIsbnList() {
-		return isbnList;
 	}
 
 	@Override

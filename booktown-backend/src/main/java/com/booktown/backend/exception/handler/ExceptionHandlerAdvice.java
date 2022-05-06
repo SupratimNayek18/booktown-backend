@@ -9,6 +9,7 @@ import com.booktown.backend.admin.exception.AdminNotFoundException;
 import com.booktown.backend.admin.exception.AdminRegistrationException;
 import com.booktown.backend.admin.exception.BookNotAddedException;
 import com.booktown.backend.exception.BookNotFoundException;
+import com.booktown.backend.exception.CartEmptyException;
 import com.booktown.backend.exception.CustomerNotFoundException;
 import com.booktown.backend.exception.CustomerRegistrationException;
 
@@ -43,6 +44,11 @@ public class ExceptionHandlerAdvice {
 	@ExceptionHandler(BookNotFoundException.class)
 	public ResponseEntity<String> bookNotFoundException(BookNotFoundException bnfe) {
 		return new ResponseEntity<>(bnfe.getMessage(), HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(CartEmptyException.class)
+	public ResponseEntity<String> cartEmptyException(CartEmptyException cee){
+		return new ResponseEntity<>(cee.getMessage(),HttpStatus.NOT_FOUND);
 	}
 
 }

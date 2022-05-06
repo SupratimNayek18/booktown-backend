@@ -21,7 +21,7 @@ import com.booktown.backend.service.EntryService;
 
 
 @RestController
-public class EntryController {
+public class CustomerEntryController {
 	
 	@Autowired
 	EntryService entryService;

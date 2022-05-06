@@ -38,6 +38,7 @@ public class DtoToEntity {
 		book.setAudiobookUrl(bookDTO.getAudiobookUrl());
 		book.setVideoUrl(bookDTO.getVideoUrl());
 		book.setISBNList(bookDTO.getIsbnList());
+		book.setPrice(bookDTO.getPrice());
 		return book;
 	}
 	
@@ -52,6 +53,10 @@ public class DtoToEntity {
 		if(bookDTO.getAuthor()!=null)
 			book.setAuthor(bookDTO.getAuthor());
 		
+		if(bookDTO.getPrice()!=null) {
+			book.setPrice(bookDTO.getPrice());
+		}
+		
 		if(bookDTO.getAudiobookUrl()!=null)
 			book.setAudiobookUrl(bookDTO.getAudiobookUrl());
 		
@@ -65,6 +70,7 @@ public class DtoToEntity {
 			}
 			book.setISBNList(storedIsbnList);
 		}
+		
 		
 		book.setStock(book.getISBNList().size());
 		
