@@ -1,9 +1,12 @@
 package com.booktown.backend.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -43,6 +46,10 @@ public class Customer {
 	
 	private Integer membershipStatus;
 	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
+	private List<Blog> blogs;
+	
+
 	/**
 	 * @JsonIgnore is used to avoid infinite loop during api testing
 	 * @OneToOne is used to denote one to one mapping and cascadetype is set to all to delete usercreds too
@@ -120,6 +127,11 @@ public class Customer {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+	
+	@JsonIgnore
+	public List<Blog> getBlogs() {
+		return blogs;
 	}
 
 	@Override
