@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.booktown.backend.dto.BlogDTO;
 import com.booktown.backend.entity.Blog;
+import com.booktown.backend.exception.BlogNotFoundException;
+import com.booktown.backend.exception.CustomerNotFoundException;
 import com.booktown.backend.service.CustomerBlogService;
 
 @RestController
@@ -23,13 +26,18 @@ public class CustomerBlogController {
 	CustomerBlogService customerBlogService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<Blog> post(@RequestBody Blog blog,@RequestParam Integer customerId){
-		return new ResponseEntity<>(customerBlogService.post(blog, customerId),HttpStatus.OK);
+	public ResponseEntity<Blog> post(@RequestBody BlogDTO blogDTO,@RequestParam Integer customerId) throws CustomerNotFoundException{
+		return new ResponseEntity<>(customerBlogService.post(blogDTO, customerId),HttpStatus.OK);
 	}
 	
 	@GetMapping("/getBlogs")
-	public ResponseEntity<List<Blog>> getBlogs(@RequestParam Integer customerId){
+	public ResponseEntity<List<Blog>> getBlogs(@RequestParam Integer customerId) throws CustomerNotFoundException{
 		return new ResponseEntity<>(customerBlogService.getBlogs(customerId),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getBlogById")
+	public ResponseEntity<Blog> getBlogById(@RequestParam Integer blogId) throws BlogNotFoundException{
+		return new ResponseEntity<>(customerBlogService.getBlogById(blogId),HttpStatus.OK);
 	}
 	
 

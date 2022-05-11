@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.booktown.backend.admin.exception.AdminNotFoundException;
 import com.booktown.backend.admin.exception.AdminRegistrationException;
 import com.booktown.backend.admin.exception.BookNotAddedException;
+import com.booktown.backend.exception.BlogNotFoundException;
 import com.booktown.backend.exception.BookNotFoundException;
 import com.booktown.backend.exception.CartEmptyException;
 import com.booktown.backend.exception.CustomerNotFoundException;
@@ -49,6 +50,11 @@ public class ExceptionHandlerAdvice {
 	@ExceptionHandler(CartEmptyException.class)
 	public ResponseEntity<String> cartEmptyException(CartEmptyException cee){
 		return new ResponseEntity<>(cee.getMessage(),HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(BlogNotFoundException.class)
+	public ResponseEntity<String> blogNotFoundException(BlogNotFoundException bnfe) {
+		return new ResponseEntity<>(bnfe.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 }

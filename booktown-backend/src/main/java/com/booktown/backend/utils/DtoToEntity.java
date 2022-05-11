@@ -3,9 +3,11 @@ package com.booktown.backend.utils;
 import java.util.List;
 
 import com.booktown.backend.admin.dto.AdminDTO;
+import com.booktown.backend.dto.BlogDTO;
 import com.booktown.backend.dto.BookDTO;
 import com.booktown.backend.dto.RegistrationDetailsDTO;
 import com.booktown.backend.entity.Admin;
+import com.booktown.backend.entity.Blog;
 import com.booktown.backend.entity.Book;
 import com.booktown.backend.entity.Customer;
 
@@ -75,6 +77,13 @@ public class DtoToEntity {
 		book.setStock(book.getISBNList().size());
 		
 		return book;
+	}
+	
+	public static Blog convertBlogDtoToEntity(BlogDTO blogDTO) {
+		Blog blog = new Blog();
+		blog.setTitle(blogDTO.getTitle());
+		blog.setDescription(blogDTO.getDescription());
+		return blog;
 	}
 
 }
