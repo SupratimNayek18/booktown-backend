@@ -53,8 +53,8 @@ public class Book {
 	private Double price;
 
 	private String audiobookUrl;
-
-	private String videoUrl;
+	
+	private String imageUrl;
 
 	public String getTitle() {
 		return title;
@@ -105,14 +105,6 @@ public class Book {
 		this.audiobookUrl = audiobookUrl;
 	}
 
-	public String getVideoUrl() {
-		return videoUrl;
-	}
-
-	public void setVideoUrl(String videoUrl) {
-		this.videoUrl = videoUrl;
-	}
-
 	public Integer getBookId() {
 		return bookId;
 	}
@@ -125,11 +117,18 @@ public class Book {
 		this.price = price;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", title=" + title + ", description=" + description + ", stock=" + stock
-				+ ", author=" + author + ", price=" + price + ", audiobookUrl=" + audiobookUrl + ", videoUrl="
-				+ videoUrl + "]";
+				+ ", author=" + author + ", price=" + price + ", audiobookUrl=" + audiobookUrl;
 	}
 
 }

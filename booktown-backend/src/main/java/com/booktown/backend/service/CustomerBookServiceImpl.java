@@ -57,6 +57,7 @@ public class CustomerBookServiceImpl implements CustomerBookService {
 		if(book.isPresent()) {
 			cart.setBookId(bookId);
 			cart.setPrice(book.get().getPrice());
+			cart.setBookName(book.get().getTitle());
 		}
 		
 		Optional<Customer> customer = customerRepository.findById(customerId);

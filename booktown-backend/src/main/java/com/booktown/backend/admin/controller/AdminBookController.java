@@ -3,6 +3,7 @@ package com.booktown.backend.admin.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,6 +18,7 @@ import com.booktown.backend.entity.Book;
 import com.booktown.backend.exception.BookNotFoundException;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/admin")
 public class AdminBookController {
 	
@@ -31,7 +33,7 @@ public class AdminBookController {
 	
 	//Delete method for deleting book by id
 	@DeleteMapping("/deleteBook")
-	public ResponseEntity<String> addBook(@RequestBody Integer bookId) throws BookNotFoundException{
+	public ResponseEntity<String> deleteBook(@RequestBody Integer bookId) throws BookNotFoundException{
 		return new ResponseEntity<>(adminProductService.deleteById(bookId),HttpStatus.OK);
 	}
 	

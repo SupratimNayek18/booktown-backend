@@ -17,6 +17,10 @@ public class BookDTO {
 	
 	private Double price;
 
+	private String audiobookUrl;
+	
+	private String imageUrl;
+
 	public Double getPrice() {
 		return price;
 	}
@@ -24,10 +28,6 @@ public class BookDTO {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-
-	private String audiobookUrl;
-
-	private String videoUrl;
 	
 	public Integer getBookId() {
 		return bookId;
@@ -77,12 +77,12 @@ public class BookDTO {
 		this.audiobookUrl = audiobookUrl;
 	}
 
-	public String getVideoUrl() {
-		return videoUrl;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setVideoUrl(String videoUrl) {
-		this.videoUrl = videoUrl;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 }

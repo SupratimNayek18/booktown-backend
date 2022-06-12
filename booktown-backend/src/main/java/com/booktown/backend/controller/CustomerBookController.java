@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.booktown.backend.exception.CartEmptyException;
 import com.booktown.backend.service.CustomerBookService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/book")
 public class CustomerBookController {
 	
@@ -25,8 +27,8 @@ public class CustomerBookController {
 	CustomerBookService customerBookService;
 	
 	@PostMapping("/addToCart")
-	public ResponseEntity<Cart> addToCart(@RequestParam Integer bookid,@RequestParam Integer customerId){
-		return new ResponseEntity<>(customerBookService.addToCart(bookid,customerId),HttpStatus.OK);
+	public ResponseEntity<Cart> addToCart(@RequestParam Integer bookId,@RequestParam Integer customerId){
+		return new ResponseEntity<>(customerBookService.addToCart(bookId,customerId),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/emptyCart")

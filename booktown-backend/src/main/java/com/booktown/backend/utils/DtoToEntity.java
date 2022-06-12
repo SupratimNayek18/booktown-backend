@@ -38,9 +38,9 @@ public class DtoToEntity {
 		book.setAuthor(bookDTO.getAuthor());
 		book.setStock(bookDTO.getIsbnList().size());
 		book.setAudiobookUrl(bookDTO.getAudiobookUrl());
-		book.setVideoUrl(bookDTO.getVideoUrl());
 		book.setISBNList(bookDTO.getIsbnList());
 		book.setPrice(bookDTO.getPrice());
+		book.setImageUrl(bookDTO.getImageUrl());
 		return book;
 	}
 	
@@ -62,9 +62,6 @@ public class DtoToEntity {
 		if(bookDTO.getAudiobookUrl()!=null)
 			book.setAudiobookUrl(bookDTO.getAudiobookUrl());
 		
-		if(bookDTO.getVideoUrl()!=null)
-			book.setVideoUrl(bookDTO.getVideoUrl());
-		
 		if(!bookDTO.getIsbnList().isEmpty()) {
 			List<String> storedIsbnList = book.getISBNList();
 			for(String isbn : bookDTO.getIsbnList()) {
@@ -73,6 +70,8 @@ public class DtoToEntity {
 			book.setISBNList(storedIsbnList);
 		}
 		
+		if(bookDTO.getImageUrl()!=null)
+			book.setImageUrl(bookDTO.getImageUrl());
 		
 		book.setStock(book.getISBNList().size());
 		
