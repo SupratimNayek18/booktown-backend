@@ -104,6 +104,7 @@ public class CustomerBookServiceImpl implements CustomerBookService {
 			orderItems.setBookId(cartitem.getBookId());
 			orderItems.setQuantity(cartitem.getQuantity());
 			orderItems.setOrder(order);
+			orderItems.setBookName(cartitem.getBookName());
 			totalPrice += cartitem.getPrice();
 			order.getOrderItems().add(orderItems);
 		}

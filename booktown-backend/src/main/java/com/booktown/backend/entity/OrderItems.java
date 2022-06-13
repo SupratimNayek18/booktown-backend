@@ -34,6 +34,8 @@ public class OrderItems {
 	
 	private Integer bookId;
 	
+	private String bookName;
+	
 	private Integer quantity;
 
 	@JsonIgnore
@@ -63,6 +65,14 @@ public class OrderItems {
 
 	public Integer getItemId() {
 		return itemId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String string) {
+		this.bookName = string;
 	}
 
 	@Override
